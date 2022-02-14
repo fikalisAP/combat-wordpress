@@ -5,9 +5,9 @@
                 <img src="<?php bloginfo('template_url'); ?>/assets/images/logo-footer.svg" alt="" class="footer__logo">
                 <div class="footer__contacts">
                     <span>Лазертаг-клуб “Комбат”</span>
-                    <a href="tel:+70000000000" class="footer__contacts-tel">
+                    <a class="footer__contacts-tel" href="tel:<? the_field('phone-inner'); ?>">
                         <img src="<?php bloginfo('template_url'); ?>/assets/images/phone.svg" alt="">
-                        <p class="footer__contacts-tel-link">+7 (000) 000-00-00</p>
+                        <p class="footer__contacts-tel-link"><? the_field('phone'); ?></p>
                     </a>
                 </div>
                 <div class="footer__social">

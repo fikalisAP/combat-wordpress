@@ -104,6 +104,7 @@ a {
     font-size: 56px;
     line-height: 66px;
     margin-bottom: 25px;
+    text-transform: uppercase;
 }
 
 .header__title span {
@@ -205,8 +206,8 @@ a {
 }
 
 .benefits__item-images {
-    max-width: 46px;
-    max-height: 35px;
+    width: 46px;
+    height: 35px;
     margin-bottom: 18px;
 }
 

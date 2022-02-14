@@ -27,17 +27,16 @@
                         </ul>
                     </nav>
                     <div class="menu__contacts">
-                        <a class="menu__phone" href="tel:8900000000">8900000000</a>
-                        <a class="menu__email" href="https://vk.com/laserchaik">https://vk.com/laserchaik</a>
+                        <a class="menu__phone" href="tel:<? the_field('phone-inner'); ?>"><? the_field('phone'); ?></a>
+                        <a class="menu__email" href="<? the_field('email'); ?>"><? the_field('email'); ?></a>
                     </div>
                     <button class="menu__btn">
                         <span></span>
                     </button>
                 </div>
                 <div class="header__content">
-                    <h1 class="header__title"><span>ЛАЗЕРТАГ</span> В ЧАЙКОВСКОМ</h1>
-                    <p class="header__description">Самые большие космические арены для игры в лазертаг в Москве,
-                        новейшее оборудование, тематические арены и множество игровых режимов</p>
+                    <h1 class="header__title"><span><? the_field('header-title-blue'); ?></span> <? the_field('header-title-black'); ?></h1>
+                    <p class="header__description"><? the_field('header-text'); ?></p>
                     <a href="" class="btn-link">НАШИ ПЛОЩАДКИ</a>
                 </div>
             </div>
