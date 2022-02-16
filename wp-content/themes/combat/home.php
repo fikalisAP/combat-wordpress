@@ -7,7 +7,7 @@ Template Name: home
 <?
 get_header();
 ?>
-
+services
 <section class="benefits">
     <div class="container">
         <div class="benefits__inner">
@@ -15,6 +15,7 @@ get_header();
             global $post;
             $query = new WP_Query([
                 'posts_per_page' => 5,
+                'category_name' => 'benefits',
             ]);
             if ($query->have_posts()) {
                 while ($query->have_posts()) {
@@ -43,55 +44,26 @@ get_header();
     <div class="container">
         <h2 class="title">Выберите игру для себя</h2>
         <div class="services__content">
-            <div class="services__item">
-                <h4 class="services__item-title">Лазертаг для взрослых</h4>
-                <p class="services__item-description">Лазертаг (Лазерный пейнтбол) в Москве, в помещении, для детей
-                    и взрослых на День Рождения. Организация корпоративов, лазертаг квестов</p>
-                <p class="services__item-price">от 900 р. / чел.
-                    <span>2 часа</span>
-                </p>
-                <p class="services__item-text">
-                    от <span>8</span> человек по будням <br>
-                    и от <span>10</span> человек по выходным
-                </p>
-                <a class="services__item-button" href="#">Узнать подробнее</a>
-            </div>
-            <div class="services__item">
-                <h4 class="services__item-title">Лазертаг для взрослых</h4>
-                <p class="services__item-description">Лазертаг (Лазерный пейнтбол) в Москве, в помещении, для детей
-                    и взрослых на День Рождения. Организация корпоративов, лазертаг квестов</p>
-                <p class="services__item-price">от 900 р. / чел.
-                    <span>2 часа</span>
-                </p>
-                <p class="services__item-text">
-                    от <span>8</span> человек по будням <br>
-                    и от <span>10</span> человек по выходным
-                </p>
-                <a class="services__item-button" href="#">Узнать подробнее</a>
-            </div>
-            <div class="services__item">
-                <h4 class="services__item-title">Лазертаг для взрослых</h4>
-                <p class="services__item-description">Лазертаг (Лазерный пейнтбол) в Москве, в помещении, для детей
-                    и взрослых на День Рождения. Организация корпоративов, лазертаг квестов</p>
-                <p class="services__item-price">от 900 р. / чел.
-                    <span>2 часа</span>
-                </p>
-                <p class="services__item-text">
-                    от <span>8</span> человек по будням <br>
-                    и от <span>10</span> человек по выходным
-                </p>
-                <a class="services__item-button" href="#">Узнать подробнее</a>
-            </div>
-        </div>
-        <div class="services__tactical">
-            <div class="services__tactical-inner">
-                <div class="services__tactical-title">Тактические игры</div>
-                <div class="services__tactical-text">это отличный способ провести время, день рождения, корпоратив,
-                    выпускной, мальчишник, девичник и любой праздник. Приходите и убедитесь в этом! девичник и любой
-                    праздник. Приходите и убедитесь в этом!</div>
-            </div>
-            <a class="btn-link" href="">Наши площадки</a>
-        </div>
+            <?php
+            global $post;
+            $query = new WP_Query([
+                'posts_per_page' => 3,
+                'category_name' => 'services',
+            ]);
+            if ($query->have_posts()) {
+                while ($query->have_posts()) {
+                    $query->the_post();
+            ?>
+                    <div class="services__item">
+                        <h4 class="services__item-title"><?php the_title(); ?></h4>
+                        <p class="services__item-description"><?php the_content(); ?></p>
+                        <a class="services__item-button" href="#">Узнать подробнее</a>
+                    </div>
+            <?php
+                }
+            }
+            wp_reset_postdata();
+            ?>
     </div>
 </section>
 <section class="reviews">
