@@ -7,7 +7,14 @@ Template Name: home
 <?
 get_header();
 ?>
-services
+
+<div class="header__content">
+    <div class="container">
+        <h1 class="header__title"><span><? the_field('header-title-blue'); ?></span> <? the_field('header-title-black'); ?></h1>
+        <p class="header__description"><? the_field('header-text'); ?></p>
+        <a href="" class="btn-link">НАШИ ПЛОЩАДКИ</a>
+    </div>
+</div>
 <section class="benefits">
     <div class="container">
         <div class="benefits__inner">
@@ -64,7 +71,7 @@ services
             }
             wp_reset_postdata();
             ?>
-    </div>
+        </div>
 </section>
 <section class="reviews">
     <div class="container">
