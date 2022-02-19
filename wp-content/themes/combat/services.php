@@ -11,7 +11,7 @@ get_header();
         <h2 class="title">Услуги</h2>
         <div class="services-pages__item">
             <div class="services-pages__images">
-                <img src="<?php bloginfo('template_url'); ?>/assets/images/services.jpg" alt="">
+                <img src="<?php bloginfo('template_url'); ?>/assets/images/services.jpg" alt="" class="services_img">
             </div>
             <div class="services-pages__content">
                 <p class="services-pages__pretitle">Абобус</p>
