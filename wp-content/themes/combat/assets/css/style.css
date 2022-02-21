@@ -245,7 +245,8 @@ a {
     position: relative;
 }
 
-.services__item img::before {
+.services__item::after {
+    position: absolute;
     background: unset;
     content: "";
     display: block;
@@ -258,7 +259,7 @@ a {
     opacity: 1;
 }
 
-.services__item img:hover::before {
+.services__item:hover::after {
     background: unset;
     content: "";
     display: block;
