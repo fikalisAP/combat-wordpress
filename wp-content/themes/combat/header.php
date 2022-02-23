@@ -16,15 +16,14 @@
         <div class="container">
             <div class="header__top">
                 <img src="<?php bloginfo('template_url'); ?>/assets/images/logo-header.svg" alt="Логотип 'Комбат' ">
-                <nav class="menu">
-                    <ul class="menu__items">
-                        <li class="menu__item"><a href="/combat/?page_id=104" class="menu__link">Услуги</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Арсенал</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Галерея</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Новости</a></li>
-                    </ul>
-                </nav>
+
+                <?php wp_nav_menu([
+                    'theme_location'  => 'header-menu',
+                    'container'       => 'nav',
+                    'container_class' => 'menu',
+                    'menu_class'      => 'menu__items',
+                    'add_a_class'     => 'menu__link',
+                ]); ?>
                 <div class="menu__contacts">
                     <a class="menu__phone" href="tel:<? the_field('phone-inner'); ?>"><? the_field('phone'); ?></a>
                     <a class="menu__email" href="<? the_field('email'); ?>"><? the_field('email'); ?></a>

@@ -61,7 +61,9 @@ get_header();
                 while ($query->have_posts()) {
                     $query->the_post();
             ?>
-                    <div class="services__item">
+                    <div class="services__item" style="background-image: url(<?
+                                                                                $thumbnail_attributes = wp_get_attachment_image_src(get_post_thumbnail_id());
+                                                                                echo $thumbnail_attributes[0]; ?>">
                         <h4 class="services__item-title"><?php the_title(); ?></h4>
                         <p class="services__item-description"><?php the_content(); ?></p>
                         <a class="services__item-button" href="#">Узнать подробнее</a>

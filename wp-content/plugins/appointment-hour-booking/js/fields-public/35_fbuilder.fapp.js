@@ -41,7 +41,6 @@ $.extend(
 		getMaxDate:"",
 		arr:new Array(),
 		allUsedSlots:new Array(),
-		invalidDatesByService:new Array(),
 		service_selected:0,
 		quantity_selected:1,
 		tz:0,
@@ -56,8 +55,8 @@ $.extend(
 		percent:0,
 		notShowBookedDate:true,
 		showWeek:false,
-		autonum:0,
-		
+		autonum:0,		
+		slotsDate:[],
 		getSplittedSlots:function(d,s)
 		{	
 		    function splitSlots (a,serviceindex) {
@@ -190,6 +189,42 @@ $.extend(
 			else    
 			    return -1;
 	    },
+	    normalizeRanges:function(a)
+	    {
+	        for (var i=0;i<a.length;i++)
+	        {
+                    a[i].t1 = a[i].h1 * 60 + a[i].m1*1;
+			    	a[i].t2 = a[i].h2 * 60 + a[i].m2*1;
+			    	if (a[i].t1 >= a[i].t2)
+			    	    a[i].t2 += 24 * 60;
+            }
+	    },
+	    initcacheOpenHours: function()
+        {
+            var me  = this;
+            for (j=0;j<me.allOH.length;j++)
+                me.normalizeRanges(me.allOH[j].openhours);
+            me.cacheOpenHours = [];
+            for (j=0;j<me.services.length;j++)
+            {
+                var ohindex = me.services[j].ohindex;
+                var arr = [];
+		  	    for (var i=0;i<me.allOH[ohindex].openhours.length;i++)
+		  	    {
+		  	        if (me.allOH[ohindex].openhours[i].type=="special")
+		  	        {
+		  	        	arr[me.allOH[ohindex].openhours[i].d] = arr[me.allOH[ohindex].openhours[i].d] || [];
+		  	        	arr[me.allOH[ohindex].openhours[i].d][arr[me.allOH[ohindex].openhours[i].d].length] = jQuery.extend({capacity:me.services[j].capacity}, me.allOH[ohindex].openhours[i]);
+		  	        }
+		  	        else
+		  	        {
+		  	            arr[me.allOH[ohindex].openhours[i].type] = arr[me.allOH[ohindex].openhours[i].type] || [];
+		  	            arr[me.allOH[ohindex].openhours[i].type][arr[me.allOH[ohindex].openhours[i].type].length] = jQuery.extend({capacity:me.services[j].capacity}, me.allOH[ohindex].openhours[i]);
+		  	        }
+		  	    }
+		  	    me.cacheOpenHours[j] = arr;
+		    }
+        },
         getAvailablePartialSlots: function(d, part,s) 
         {   
             var me  = this;
@@ -206,37 +241,14 @@ $.extend(
                 }       
             }
             var capacity_service = me.services[s].capacity;
-            if (!me.cacheOpenHours || me.cacheOpenHours.length==0)
-            {
-                var arr = new Array();
-                var ohindex = me.services[s].ohindex;
-			  	for (var i=0;i<me.allOH[ohindex].openhours.length;i++)
-			  	{
-			  	    if (me.allOH[ohindex].openhours[i].type=="special")
-			  	    {
-			  	    	arr[me.allOH[ohindex].openhours[i].d] = arr[me.allOH[ohindex].openhours[i].d] || [];
-			  	    	arr[me.allOH[ohindex].openhours[i].d][arr[me.allOH[ohindex].openhours[i].d].length] = jQuery.extend({}, me.allOH[ohindex].openhours[i]);
-			  	    }
-			  	    else
-			  	    {
-			  	        arr[me.allOH[ohindex].openhours[i].type] = arr[me.allOH[ohindex].openhours[i].type] || [];
-			  	        arr[me.allOH[ohindex].openhours[i].type][arr[me.allOH[ohindex].openhours[i].type].length] = jQuery.extend({}, me.allOH[ohindex].openhours[i]);	
-			  	    }        
-			  	}
-			  	me.cacheOpenHours = arr;
-            }
-            /*if (!me.arr[d])*/
-            {
-                var a = new Array();
-			  	if (me.cacheOpenHours[d])
-			  	    a = me.cacheOpenHours[d].slice(0);
-			  	else if (me.cacheOpenHours["d"+$.datepicker.parseDate("yy-mm-dd", d).getDay()])
-			  		a = me.cacheOpenHours["d"+$.datepicker.parseDate("yy-mm-dd", d).getDay()].slice(0);
-			  	else if (me.cacheOpenHours["all"])
-			  		a = me.cacheOpenHours["all"].slice(0);
-			  	me.arr[d]	= a;
-			  			  
-            }
+            var a = [];
+            if (me.cacheOpenHours[s][d])
+			    a = me.cacheOpenHours[s][d].slice(0);
+			else if (me.cacheOpenHours[s]["d"+$.datepicker.parseDate("yy-mm-dd", d).getDay()])
+				a = me.cacheOpenHours[s]["d"+$.datepicker.parseDate("yy-mm-dd", d).getDay()].slice(0);
+			else if (me.cacheOpenHours[s]["all"])
+				a = me.cacheOpenHours[s]["all"].slice(0);
+            me.arr[d]	= a;
             if (!me.duration)
             {
                 var arr = new Array();
@@ -245,6 +257,10 @@ $.extend(
             var data1 = me.cacheArr[d];            
             if (!data1) data1 = new Array();
             var duration = parseFloat(me.services[s].duration);
+            me.duration = duration;
+		  	me.bduration = me.duration;
+		  	if (!me.bSlotsCheckbox)
+		  	    me.bduration = me.bSlots*1;
 			var arr = new Array();
 			for (var i=0;i<me.arr[d].length;i++)
 			    arr[i] = jQuery.extend({}, me.arr[d][i]);			  		 	      
@@ -254,7 +270,7 @@ $.extend(
 				arr[i].t2 = arr[i].h2 * 60 + arr[i].m2*1;
 				if (arr[i].t1>=arr[i].t2)
 				    arr[i].t2 += 24 * 60;
-			}			
+			}		
 			if (me.ignoreUsedSlots)
 			    var data2 = $.merge(data1.slice(0),[]);
 			else
@@ -360,7 +376,6 @@ $.extend(
 		  	  	                st += duration + me.pb + me.pa;
 		  	  	            //st += duration + me.pb + me.pa;    
 			            }
-			                
 			            var m1 = st % 60;
 			            var h1 = (st - m1)/60;
 			            arr[i].t1 = st;
@@ -565,7 +580,10 @@ $.extend(
         },
         getAvailableSlotsByService: function(d,s)
         {
-            var me = this;		    
+            var me = this;
+            var c = "s"+s+"q"+me.quantity_selected+"d"+d;
+            if (typeof me.slotsDate[c]!== 'undefined')
+                return me.slotsDate[c];		    
 		    function setHtmlUsedSlots(d,st,et)
 		    {
 		        st = st * 60;
@@ -618,31 +636,15 @@ $.extend(
 		        me.htmlUsedSlots[d] = $.merge(setHtmlUsedSlots(d,this.tz*-1,24), setHtmlUsedSlots(d1,0,this.tz*-1));
 		        	        
 		    }
-		    var c = "s"+s+"q"+me.quantity_selected;
-		    var slotsReal = 0;
-		    var htmlSlots = me.getCurrentSlots(arr,d,s);
-		    for (var j=0;j<htmlSlots.length && slotsReal==0;j++) 
-		        if (htmlSlots[j].html.indexOf("currentSelection")!=-1 || htmlSlots[j].html.indexOf("availableslot")!=-1)
-		            slotsReal ++;
-		    if (slotsReal==0)
-		    { 
-		        me.invalidDatesByService[c] = me.invalidDatesByService[c] || [];
-		        if ($.inArray(d, me.invalidDatesByService[c]) == -1)
-		            me.invalidDatesByService[c][me.invalidDatesByService[c].length] = d;
-		        return [];    
-		    } 
-		    else
-		    {  
-		        me.invalidDatesByService[c] = me.invalidDatesByService[c] || [];
-		        if ($.inArray(d, me.invalidDatesByService[c]) > -1)
-		  	 	    me.invalidDatesByService[c].splice($.inArray(d, me.invalidDatesByService[c]), 1);
-            
-		    }
+		    me.slotsDate[c] = arr;
 		    return arr;
         },
 		getAvailableSlots: function(d)
 		{     
 		    var me = this;
+            var c = "s"+(me.showAllServices?"":me.service_selected)+"q"+me.quantity_selected+"d"+d;
+            if (typeof me.slotsDate[c]!== 'undefined')
+                return me.slotsDate[c];
 		    var a_max = [];
 			if (!me.showAllServices)
 			    a_max = this.getAvailableSlotsByService(d,me.service_selected);
@@ -656,14 +658,7 @@ $.extend(
 			            a_max = me.availableSlotsByService[i].slice(0);			                
 			    }
 			}
-			var c = "sq"+me.quantity_selected;
-		    if (a_max.length==0)
-		    { 
-		        me.invalidDatesByService[c] = me.invalidDatesByService[c] || [];
-		        if ($.inArray(d, me.invalidDatesByService[c]) == -1)
-		            me.invalidDatesByService[c][me.invalidDatesByService[c].length] = d;
-		        return [];    
-		    }
+		    me.slotsDate[c] = a_max;
 		    return a_max;    
 			    
 		},
@@ -686,7 +681,7 @@ $.extend(
             if (($.inArray("ui-datepicker-unselectable",c)==-1) &&  !me.emptySelectCheckbox || (me.emptySelectCheckbox && $(".fieldCalendarService"+me.name+" select option:selected").index() > 0 ))
             {
                 var arr = me.getAvailableSlots(day);
-                if ($.inArray(day, me.invalidDatesByService["s"+(me.showAllServices?"":me.service_selected)+"q"+me.quantity_selected]) > -1 && me.notShowBookedDate)
+                if (arr.length==0 && me.notShowBookedDate)
                     c.push("nonworking","ui-datepicker-unselectable","ui-state-disabled","notavailslot");
                 if (typeof cp_hourbk_cmpublic !== 'undefined')
                 {   
@@ -808,7 +803,8 @@ $.extend(
 			    {   
 			        me.autonum++; 
 			        me.services[i].idx = me.autonum; 
-			    }       
+			    }
+			me.initcacheOpenHours();           
 		    function onChangeDateOrService(d)
 		    {
 		        if (!(!me.emptySelectCheckbox || (me.emptySelectCheckbox && $(".fieldCalendarService"+me.name+" select option:selected").index() > 0 )))
@@ -831,7 +827,7 @@ $.extend(
 		  			if (me.notShowBookedDate && (me.maxNumberOfApp==0 || me.allUsedSlots.length<me.maxNumberOfApp) && arr.length==0 && (!me.usedSlots[d] || me.usedSlots[d].length==0 || me.service_change))
 		    		{
 		    		    me.service_change = false;
-                        while ((!DisableSpecificDates(nextdateAvailable) || (arr.length==0 && me.invalidDatesByService[c].length<365)) && i<400)
+                        while ((!DisableSpecificDates(nextdateAvailable) || (arr.length==0)) && i<400)
                         {
                             i++;
                             nextdateAvailable.setDate(nextdateAvailable.getDate() + 1);
@@ -842,17 +838,9 @@ $.extend(
                             e.datepicker("setDate", nextdateAvailable);
                             me.getD = nextdateAvailable;
 		                    onChangeDateOrService($.datepicker.formatDate("yy-mm-dd", nextdateAvailable));  
-                        } 
-                        else if (me.invalidDatesByService[c].length>=365)
+                        }
+                        else
                         {
-                            if (me.getMinDate != "" && me.getMinDate.getTime() < me.getD.getTime())
-                            {
-                                e.datepicker("setDate", me.getMinDate);
-                                me.getD = me.getMinDate;
-                                me.invalidDatesByService[c] = new Array();
-		                        onChangeDateOrService($.datepicker.formatDate("yy-mm-dd", me.getD));
-		                        return; 
-                            }
                             e.datepicker("setDate", me.getMinDate);
                             s.html("<div class=\"slots\">"+cp_hourbk_nomore_label+"</div>");                           
                         }
@@ -940,19 +928,14 @@ $.extend(
 		  			    if ((me.maxNumberOfApp==1 && me.allUsedSlots.length==me.maxNumberOfApp) || (me.allUsedSlots.length>0 && me.allUsedSlots[0].quantity!=q && !me.allowDifferentQuantities)) //cancel previous slot
 		  			    {
 		  			        for (var i = 0; (i<me.allUsedSlots.length); i++)
-		  			        {  
-		  			            var c = "s"+me.allUsedSlots[i].serviceindex+"q"+me.allUsedSlots[i].quantity;
-		  			            var c1 = "sq"+me.allUsedSlots[i].quantity;
-		  			            var d = me.allUsedSlots[i].d;
-		  			            if ($.inArray(d, me.invalidDatesByService[c]) > -1)
-		  			            {
-		  			                me.invalidDatesByService[c].splice($.inArray(d, me.invalidDatesByService[c]), 1);
-		  			                if ($.inArray(d, me.invalidDatesByService[c1]) > -1)
-		  			                    me.invalidDatesByService[c1].splice($.inArray(d, me.invalidDatesByService[c1]), 1);
-		  			            }
-		  			            me.usedSlots[me.allUsedSlots[i].d] = new Array();
-		  			            me.allUsedSlots = new Array();
+		  			        {
+		  			            var c = "s"+me.allUsedSlots[i].serviceindex+"q"+me.allUsedSlots[i].quantity+"d"+me.allUsedSlots[i].d;
+		  			            var c1 = "sq"+me.allUsedSlots[i].quantity+"d"+me.allUsedSlots[i].d;
+		  			            delete me.slotsDate[c];
+		  			            delete me.slotsDate[c1];
+		  			            me.usedSlots[me.allUsedSlots[i].d] = [];		  			            
 		  			        }
+		  			        me.allUsedSlots = [];
 		  			    }
 		  			    if ($(this).parents("fieldset").hasClass("ahbgutenberg_editor"))
 		  			        return false;
@@ -971,6 +954,10 @@ $.extend(
 		  				    me.usedSlots[d][me.usedSlots[d].length] = obj; 
 		  				    me.allUsedSlots[me.allUsedSlots.length] = obj;
 		  				    $(document).trigger("beforeClickSlot",{name:me.name, d:d});
+		  				    var c = "s"+ind+"q"+q+"d"+d;
+		  			        var c1 = "sq"+q+"d"+d;
+		  			        delete me.slotsDate[c];
+		  			        delete me.slotsDate[c1];
 		  				    onChangeDateOrService($.datepicker.formatDate('yy-mm-dd', me.getD));
 		  			    }
 		  			    else
@@ -1000,15 +987,11 @@ $.extend(
 		  		                find = true;
 		  		                me.allUsedSlots.splice(i, 1);    
 		  		            }
-		  			    var c = "s"+s+"q"+me.quantity_selected;
-		  			    var c1 = "sq"+me.quantity_selected;
-		  			    if ($.inArray(d, me.invalidDatesByService[c]) > -1)
-		  			    {
-		  			        me.invalidDatesByService[c].splice($.inArray(d, me.invalidDatesByService[c]), 1);
-		  			        if ($.inArray(d, me.invalidDatesByService[c1]) > -1)
-		  			            me.invalidDatesByService[c1].splice($.inArray(d, me.invalidDatesByService[c1]), 1);
-		  			        e.datepicker("setDate", me.getD);
-		  			    }
+		  			    var c = "s"+s+"q"+me.quantity_selected+"d"+d;
+		  			    var c1 = "sq"+me.quantity_selected+"d"+d;
+		  			    delete me.slotsDate[c];
+		  			    delete me.slotsDate[c1];
+		  			    e.datepicker("setDate", me.getD);
 		  			    onChangeDateOrService($.datepicker.formatDate('yy-mm-dd', me.getD));
 		  			    return false;
 		  			});
@@ -1062,6 +1045,7 @@ $.extend(
 				                me.cacheArr[obj.d][me.cacheArr[obj.d].length] = obj;    
 		  		            }				    
 		  		        }
+		  		        me.slotsDate = [];
 		  			    me.loadOK = true;				      			
 		  		    }
 		  	    });	
@@ -1137,7 +1121,7 @@ $.extend(
 		  	     me.duration = parseFloat(me.services[me.service_selected].duration);	
 		  	     me.pa = me.services[me.service_selected].pa * 1 || 0;		  			  	
 		  	     me.pb = me.services[me.service_selected].pb * 1 || 0;
-		  	     me.cacheOpenHours = new Array();
+		  	     //me.cacheOpenHours = new Array();
 		  	     me.special_days = me.getSpecialDays();
 		  	     var str2 = "";    
 		  	     for (var i=1;i<=me.services[me.service_selected].capacity;i++)
@@ -1281,7 +1265,7 @@ $.extend(
 		  			$( "#field" + me.form_identifier + "-" + me.index + " div.cpefb_error").remove();
 		  			
            	    },
-		  		beforeShowDay: function(d){return me.rC(d)}
+		  		//beforeShowDay: function(d){return me.rC(d)}
 		    });
 		    
 		    e.datepicker("option", $.datepicker.regional[$.validator.messages.language]);
@@ -1343,6 +1327,8 @@ $.extend(
             var sum = 0;
             for (var i=0;i<me.working_dates.length;i++)
                 sum += me.working_dates[i];
+            for (var key in me.cacheOpenHours[me.service_selected])
+                sum ++;
             if (sum>0)
             {       
 		       var nextdateAvailable = e.datepicker("getDate");
@@ -1508,6 +1494,7 @@ $.extend(
 		  		                    me.cacheArr[dd] = me.cacheArr[dd] || [];
 		  		                    me.cacheArr[dd][me.cacheArr[dd].length] = data[i];	
 		  		                }
+		  		                me.slotsDate = [];
 		  			            me.loadOK = true;
                                 for (var i = 0; (i<me.allUsedSlots.length && !overlapping); i++)
                                 {
@@ -1551,6 +1538,7 @@ $.extend(
 		  		                        me.cacheArr[dd] = me.cacheArr[dd] || [];
 		  		                        me.cacheArr[dd][me.cacheArr[dd].length] = data[i];	
 		  		                    }
+		  		                    me.slotsDate = [];
 		  			                me.loadOK = true;
                                     var errors = {};
                                     errors[ element.name ] = validator.defaultMessage( element, "avoid_overlapping" );

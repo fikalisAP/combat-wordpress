@@ -1219,7 +1219,10 @@ Please note that the pro features aren't advised as part of the free plugin in t
 = 1.3.43 =
 * CSV report fix
 
+= 1.3.44 =
+* Better calendar speed
+
 == Upgrade Notice ==
 
-= 1.3.43 =
-* CSV report fix
+= 1.3.44 =
+* Better calendar speed
