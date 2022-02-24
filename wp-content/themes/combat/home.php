@@ -52,27 +52,22 @@ get_header();
         <h2 class="title">Выберите игру для себя</h2>
         <div class="services__content">
             <?php
-            global $post;
-            $query = new WP_Query([
-                'posts_per_page' => 3,
-                'category_name' => 'services',
-            ]);
-            if ($query->have_posts()) {
-                while ($query->have_posts()) {
-                    $query->the_post();
+            $args = array('post_type' => 'services', 'posts_per_page' => 3);
+            $the_query = new WP_Query($args);
             ?>
+            <?php if ($the_query->have_posts()) : ?>
+                <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
                     <div class="services__item" style="background-image: url(<?
                                                                                 $thumbnail_attributes = wp_get_attachment_image_src(get_post_thumbnail_id());
                                                                                 echo $thumbnail_attributes[0]; ?>">
                         <h4 class="services__item-title"><?php the_title(); ?></h4>
                         <p class="services__item-description"><?php the_content(); ?></p>
-                        <a class="services__item-button" href="#">Узнать подробнее</a>
                     </div>
-            <?php
-                }
-            }
-            wp_reset_postdata();
-            ?>
+                    <?php wp_reset_postdata(); ?>
+                <?php endwhile;
+            else : ?>
+                <p><?php _e('Услуги не найдены'); ?></p>
+            <?php endif; ?>
         </div>
 </section>
 <section class="reviews">
