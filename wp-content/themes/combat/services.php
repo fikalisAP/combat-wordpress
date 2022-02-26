@@ -18,7 +18,7 @@ get_header();
                 <div class="services-pages__item">
                     <div class="services-pages__images">
                         <?php the_post_thumbnail(
-                            array(40, 40),
+                            array(640, 440),
                             array(
                                 'class' => "benefits__item-images"
                             )
@@ -42,7 +42,7 @@ get_header();
                             </div>
                         </div>
                         <p class="services-pages__description">
-                            <?php echo wp_strip_all_tags(get_the_excerpt(), true);;  ?> aa
+                            <?php echo wp_strip_all_tags(get_the_excerpt(), true);;  ?>
                         </p>
                         <div class="services-pages__buttons">
                             <button class="services-pages__btn-book">Забронировать</button>
