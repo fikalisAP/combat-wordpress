@@ -69,6 +69,15 @@ get_header();
                 <p><?php _e('Услуги не найдены'); ?></p>
             <?php endif; ?>
         </div>
+        <div class="services__tactical">
+            <div class="services__tactical-inner">
+                <div class="services__tactical-title">Тактические игры</div>
+                <div class="services__tactical-text">это отличный способ провести время, день рождения, корпоратив,
+                    выпускной, мальчишник, девичник и любой праздник. Приходите и убедитесь в этом! девичник и любой
+                    праздник. Приходите и убедитесь в этом!</div>
+            </div>
+            <a class="btn-link" href="">Наши площадки</a>
+        </div>
 </section>
 <section class="reviews">
     <div class="container">
@@ -104,42 +113,25 @@ get_header();
 
 <section class="gallery">
     <div class="container">
-        <h2 class="title">Яркие моменты</h2>
-        <div class="gallery__inner">
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo1.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo1.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo2.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo2.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo3.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo3.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo4.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo4.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo5.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo5.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo6.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo6.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo7.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo7.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo8.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo8.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo9.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo9.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo10.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo10.jpg" alt="">
-            </a>
-            <a href="<?php bloginfo('template_url'); ?>/assets/images/photo11.jpg" class="gallert__inner-item" data-fancybox="images">
-                <img class="gallert__inner-img" src="<?php bloginfo('template_url'); ?>/assets/images/photo11.jpg" alt="">
-            </a>
-        </div>
+
+        <?php
+        global $post;
+        $query = new WP_Query([
+            'posts_per_page' => 1,
+            'category_name' => 'gallery',
+        ]);
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+        ?>
+                <h2 class="title"> <?php the_title(); ?></h2>
+                <?php the_content(); ?>
+
+        <?php
+            }
+        }
+        wp_reset_postdata();
+        ?>
     </div>
 </section>
 
@@ -147,49 +139,48 @@ get_header();
     <div class="container">
         <p class="pre-title">ПРЕСС-ЦЕНТР</p>
         <h2 class="title">Новости лазертаг-индустрии</h2>
-        <a href="" class="news__item">
-            <div class="news__content">
-                <div class="news__data">10 декабря 2021</div>
-                <p class="news__title">
-                    <span>Будущее лазертага уже здесь: встречайте – «Пульсар»!</span>
-                </p>
-                <div class="news__description">Недавно мы сообщили, что готовы показать миру новинку – тагер под
-                    названием «Пульсар». Сегодня вы, наконец, увидите его в коротком тизере.
-                </div>
-                <div class="news__bottom">
-                    <div class="news__reviews">
-                        <img src="<?php bloginfo('template_url'); ?>/assets/images/eye.svg" alt="">
-                        <span>Просмотров 0</span>
+        <?php
+        global $post;
+        $query = new WP_Query([
+            'posts_per_page' => 2,
+            'category_name' => 'news',
+        ]);
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+        ?>
+                <a href="<?php the_permalink(); ?>" class="news__item">
+                    <div class="news__content">
+                        <div class="news__data"><?php the_date('n F Y'); ?></div>
+                        <p class="news__title">
+                            <span><?php the_title(); ?></span>
+                        </p>
+                        <div class="news__description">
+                            <?php echo wp_strip_all_tags(get_the_excerpt(), true);;  ?>
+                        </div>
+                        <div class="news__bottom">
+                            <div class="news__reviews">
+                                <img src="<?php bloginfo('template_url'); ?>/assets/images/eye.svg" alt="">
+                                <span>Просмотров 0</span>
+                            </div>
+                            <img class="news__link" src="<?php bloginfo('template_url'); ?>/assets/images/arrow-news.svg" alt="">
+                        </div>
                     </div>
-                    <img class="news__link" src="<?php bloginfo('template_url'); ?>/assets/images/arrow-news.svg" alt="">
-                </div>
-            </div>
-            <div class="news__wrapper-img">
-                <img class="news__images" src="<?php bloginfo('template_url'); ?>/assets/images/photo1.jpg" alt="">
-            </div>
-        </a>
-        <a href="" class="news__item">
-            <div class="news__content">
-                <div class="news__data">10 декабря 2021</div>
-                <p class="news__title">
-                    <span>Будущее лазертага уже здесь: встречайте – «Пульсар»!</span>
-                </p>
-                <div class="news__description">Недавно мы сообщили, что готовы показать миру новинку – тагер под
-                    названием «Пульсар». Сегодня вы, наконец, увидите его в коротком тизере.
-                </div>
-                <div class="news__bottom">
-                    <div class="news__reviews">
-                        <img src="<?php bloginfo('template_url'); ?>/assets/images/eye.svg" alt="">
-                        <span>Просмотров 0</span>
+                    <div class="news__wrapper-img">
+                        <?php the_post_thumbnail(
+                            array(540, 540),
+                            array(
+                                'class' => "news__images"
+                            )
+                        ); ?>
                     </div>
-                    <img class="news__link" src="<?php bloginfo('template_url'); ?>/assets/images/arrow-news.svg" alt="">
-                </div>
-            </div>
-            <div class="news__wrapper-img">
-                <img class="news__images" src="<?php bloginfo('template_url'); ?>/assets/images/news.jpg" alt="">
-            </div>
-        </a>
-        <a class="btn-link news__btn" href="">Все новости</a>
+                </a>
+        <?php
+            }
+        }
+        wp_reset_postdata();
+        ?>
+        <a class="btn-link news__btn" href="<?php echo get_page_link(128); ?>">Все новости</a>
     </div>
 </section>
 <?

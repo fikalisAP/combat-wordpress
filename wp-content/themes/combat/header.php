@@ -1,3 +1,4 @@
+<?php $front_id = get_option('page_on_front'); ?>
 <!DOCTYPE html>
 
 <html <?php language_attributes(); ?>>
@@ -15,8 +16,9 @@
     <header class="header">
         <div class="container">
             <div class="header__top">
-                <img src="<?php bloginfo('template_url'); ?>/assets/images/logo-header.svg" alt="Логотип 'Комбат' ">
-
+                <a href="<?php echo get_home_url(); ?>">
+                    <img src="<?php bloginfo('template_url'); ?>/assets/images/logo-header.svg" alt="Логотип 'Комбат' ">
+                </a>
                 <?php wp_nav_menu([
                     'theme_location'  => 'header-menu',
                     'container'       => 'nav',
@@ -25,8 +27,12 @@
                     'add_a_class'     => 'menu__link',
                 ]); ?>
                 <div class="menu__contacts">
-                    <a class="menu__phone" href="tel:<? the_field('phone-inner'); ?>"><? the_field('phone'); ?></a>
-                    <a class="menu__email" href="<? the_field('email'); ?>"><? the_field('email'); ?></a>
+                    <a class="menu__phone" href="tel:<? $value = get_field('phone-inner', $front_id);
+                                                        echo $value; ?>"><? $value = get_field('phone', $front_id);
+                                                                                                                        echo $value; ?></a>
+                    <a class="menu__email" href="<? $value = get_field('email', $front_id);
+                                                    echo $value; ?>"><? $value = get_field('email', $front_id);
+                                                                                                                echo $value; ?></a>
                 </div>
                 <button class="menu__btn">
                     <span></span>
