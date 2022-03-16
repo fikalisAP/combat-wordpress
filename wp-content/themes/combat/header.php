@@ -16,8 +16,8 @@
     <header class="header">
         <div class="container">
             <div class="header__top">
-                <a href="<?php echo get_home_url(); ?>">
-                    <img src="<?php bloginfo('template_url'); ?>/assets/images/logo-header.svg" alt="Логотип 'Комбат' ">
+                <a class="logo__link" href="<?php echo get_home_url(); ?>">
+                    <img class="logo" src="<?php bloginfo('template_url'); ?>/assets/images/logo-header.svg" alt="Логотип 'Комбат' ">
                 </a>
                 <?php wp_nav_menu([
                     'theme_location'  => 'header-menu',

@@ -49,10 +49,14 @@ a {
     align-items: center;
     margin-top: 0px;
 }
+.logo__link{
+    z-index: 4;
+}
 
 .menu {
     display: flex;
     align-items: center;
+    z-index: 1;
 }
 
 .menu__items {
@@ -148,6 +152,7 @@ a {
     border: none;
     outline: none;
     cursor: pointer;
+    z-index: 2;
 }
 
 .menu__btn span {
@@ -799,11 +804,10 @@ a {
 }
 
 .news__photo img {
-    max-width: 800px;
-    height: 350px;
+    max-width: 850px;
+    max-height: 450px;
     height: 100%;
     width: 100%;
-    background-size: cover;
 }
 
 .text__news p {
