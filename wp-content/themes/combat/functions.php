@@ -125,10 +125,10 @@ function services_posttype()
 }
 add_action('init', 'services_posttype', 0);
 
-function webpro_add_books_to_query($query)
+function services_query($query)
 {
     if (is_home() && $query->is_main_query())
         $query->set('post_type', array('post', 'services'));
     return $query; 
 }
-add_action('pre_get_posts', 'webpro_add_books_to_query');
+add_action('pre_get_posts', 'services_query');
