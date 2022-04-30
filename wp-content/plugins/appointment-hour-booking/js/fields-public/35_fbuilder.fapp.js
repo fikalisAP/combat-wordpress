@@ -25,6 +25,7 @@ $.extend(
 		maxNumberOfApp:0,
 		showAllServices:false,		
 		allowDifferentQuantities:false,
+		allowSelectSameSlot:false,
 		firstDay:0,
 		minDate:"0",
 		maxDate:"",
@@ -559,7 +560,7 @@ $.extend(
                 	else
                 	{
                 	    for (var i=0;i<field.length;i++)
-                	        if (field[i].t==e1.t && !field[i].availableslot && e1.availableslot)
+                	        if (field[i].t==e1.t && !field[i].availableslot && (e1.availableslot || e1.currentSelection))
                 	        {
                 	             field[i]= e1;
                 	             break;        
@@ -942,7 +943,7 @@ $.extend(
 		  			    $( "#field" + me.form_identifier + "-" + me.index + " div.cpefb_error").remove();	
 		  			    if ($(this).parent().hasClass("htmlUsed"))
 		  			        return false;
-		  			    if ($(this).parent().hasClass("currentSelection"))
+		  			    if ($(this).parent().hasClass("currentSelection") && !me.allowSelectSameSlot)
 			                return false;    
 		  				me.allUsedSlots = me.allUsedSlots || [];
 		  				if (me.maxNumberOfApp==0 || me.allUsedSlots.length<me.maxNumberOfApp)
@@ -1332,8 +1333,12 @@ $.extend(
             if (sum>0)
             {       
 		       var nextdateAvailable = e.datepicker("getDate");
-               while (!DisableSpecificDates(nextdateAvailable))
+               var i = 0;
+               while (!DisableSpecificDates(nextdateAvailable)  && i<400)
+               { 
                    nextdateAvailable.setDate(nextdateAvailable.getDate() + 1);
+                   i++;
+               }
                e.datepicker("setDate", nextdateAvailable);  
                me.getD = nextdateAvailable;
                function ifLoadOk()
@@ -1383,7 +1388,8 @@ $.extend(
 		    {
 		        var v = 0;
 		        var find = false;
-		        var e = f.find(".ahb_service").find(':checked:not(.ignore)');
+		        var filter = ':checked:not(.ignore),[type=text]:not(.ignore)';
+		        var e = f.find(".ahb_service").find(filter);
 		        if( e.length)
 				{
 				    find = true;
@@ -1393,7 +1399,7 @@ $.extend(
 					});
 				}
 				me.percent = 0;
-				var e = f.find(".ahb_service_percent").find(':checked:not(.ignore)');
+				var e = f.find(".ahb_service_percent").find(filter);
 		        if( e.length)
 				{
 				    find = true;
@@ -1402,7 +1408,7 @@ $.extend(
 						    me.percent += this.value*1;
 					});
 				}
-				e = f.find(".ahb_service_per_slot").find(':checked:not(.ignore)');
+				e = f.find(".ahb_service_per_slot").find(filter);
 				me.allUsedSlots = me.allUsedSlots || [];
 				var s = me.allUsedSlots.length;
 		        if( e.length)
@@ -1413,7 +1419,7 @@ $.extend(
 						    v += this.value * s;
 					} );
 				}
-				e = f.find(".ahb_service_per_quantity_selection").find(':checked:not(.ignore)');
+				e = f.find(".ahb_service_per_quantity_selection").find(filter);
 				var q = f.find(".ahbfield_quantity").val();
                 if (!parseFloat(q))
                     q = 1;
@@ -1438,13 +1444,9 @@ $.extend(
 				    $( '#field' + me.form_identifier + '-' + me.index + ' #'+me.name ).change();
 				}
 		    }    
-		    $( '#field' + me.form_identifier + '-' + me.index ).parents( "form" ).find(".ahb_service,.ahb_service_percent,.ahb_service_per_slot,.ahb_service_per_quantity_selection").on("click", function(){
+		    $( '#field' + me.form_identifier + '-' + me.index ).parents( "form" ).find(".ahb_service,.ahb_service_percent,.ahb_service_per_slot,.ahb_service_per_quantity_selection").on("click change keyup", function(){
 		        getExtrasVisible($(this).parents( "form" ));
 		    });
-		    $( '#field' + me.form_identifier + '-' + me.index ).parents( "form" ).find(".ahb_service,.ahb_service_percent,.ahb_service_per_slot,.ahb_service_per_quantity_selection").on("change", function(){
-		        getExtrasVisible($(this).parents( "form" ));
-		    });
-		    
 		    $( '#field' + me.form_identifier + '-' + me.index + ' #'+me.name ).change(function(  ) {
 		        if (!me.changeAutomatic)
 		            getExtrasVisible($(this).parents( "form" ));
@@ -1496,7 +1498,8 @@ $.extend(
 		  		                }
 		  		                me.slotsDate = [];
 		  			            me.loadOK = true;
-                                for (var i = 0; (i<me.allUsedSlots.length && !overlapping); i++)
+		  			            var msg = "";
+                                for (var i = 0; (i<me.allUsedSlots.length /* && !overlapping */); i++)
                                 {
                                     me.service_selected = me.allUsedSlots[i].serviceindex;
                                     me.quantity_selected = me.allUsedSlots[i].quantity;
@@ -1517,9 +1520,15 @@ $.extend(
                                     for (var j=0;(j<arr.length  && !find);j++)
                                     {
                                         if (arr[j].t1<=t1 && arr[j].t2>=t2)
-                                            find = true;    
+                                            find = true; 
                                     }
-                                    overlapping = !find; 
+                                    if (!find)
+                                    {
+                                        overlapping = true;
+                                        if (msg == "") msg = "<div class=\"ahb_overlapping_detail\"><div class=\"ahb_overlapping_title\">Affected times:</div>";
+                                        msg += "<div><span class=\"ahb_list_time\">"+me.formatString(me.allUsedSlots[i],true,me.tz)+"</span><span class=\"ahb_list_service\">"+me.services[me.allUsedSlots[i].serviceindex].name+"</span></div>";
+                                    }
+                                    //overlapping = !find; 
                                 } 
                                 me.ignoreUsedSlots = false;
                                 var isValid = !overlapping;
@@ -1541,7 +1550,8 @@ $.extend(
 		  		                    me.slotsDate = [];
 		  			                me.loadOK = true;
                                     var errors = {};
-                                    errors[ element.name ] = validator.defaultMessage( element, "avoid_overlapping" );
+                                    if (msg != "") msg += "</div>";
+                                    errors[ element.name ] = validator.defaultMessage( element, "avoid_overlapping" )+msg;
                                     validator.invalid[ element.name ] = true;
                                     validator.showErrors( errors );
                                     element.focus();

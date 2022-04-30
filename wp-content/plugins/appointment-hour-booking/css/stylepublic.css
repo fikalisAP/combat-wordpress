@@ -150,3 +150,4 @@ a.ahb_showhidelink{position: absolute;
     top: 0px;
 }
 .ahb_bt_selected a{background:#FF6961  !important}
+.ahb_overlapping_detail{display:none}

@@ -1,6 +1,17 @@
 NextGEN Gallery
 by Imagely
 
+= V3.26  - 04.27.2022 =
+* Fixed:   A change in NextGEN 3.23 broke albums pagination.
+* Fixed:   Compatibility with TinyMCE editor used by Advanced Custom Fields.
+* Fixed:   Insert Gallery Window popup failed to load when Elementor is active.
+
+= V3.24  - 03.23.2022 =
+* Fixed:   A possible PHP warning could be generated if the global $post->content is an integer or boolean.
+* Fixed:   Activating NextGEN for the first time generated a PHP warning when registering default settings.
+* Fixed:   NextGEN widgets JS/CSS was enqueued on all frontend pages.
+* Fixed:   Some errors generated while image uploading were not being displayed to the user.
+
 = V3.23  - 02.09.2022 =
 * Fixed:   A potential PHP fatal error in C_Photocrati_Transient_Manager when using external object caching.
 * Fixed:   Manage Gallery page could create a javascript error if the page loads quickly enough.

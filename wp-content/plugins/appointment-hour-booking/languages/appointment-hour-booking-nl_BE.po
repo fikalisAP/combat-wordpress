@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Appointment Hour Booking\n"
 "POT-Creation-Date: 2019-01-18 14:38+0100\n"
-"PO-Revision-Date: 2021-08-03 13:20+0200\n"
+"PO-Revision-Date: 2022-04-18 20:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_BE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -75,7 +75,7 @@ msgid "Mode:"
 msgstr ""
 
 #: addons/authnet.addon.php:122
-msgid "Prodution"
+msgid "Production"
 msgstr ""
 
 #: addons/authnet.addon.php:123
@@ -521,7 +521,7 @@ msgstr ""
 
 #: addons/paypalpro.addon.php:398
 msgid ""
-"The add-on adds support for PayPal Payment Pro payments to accept credit cars "
+"The add-on adds support for PayPal Payment Pro payments to accept credit cards "
 "directly into the website"
 msgstr ""
 
@@ -763,7 +763,7 @@ msgid "Field name"
 msgstr "Naam wijzigen"
 
 #: addons/signature.addon.php:143 addons/signature.addon.php:226
-msgid "Enter the field name to be reaplaced by the signature"
+msgid "Enter the field name to be replaced by the signature"
 msgstr ""
 
 #: addons/signature.addon.php:173
@@ -1501,7 +1501,7 @@ msgid "From fixed email address indicated below - Recommended option"
 msgstr ""
 
 #: cp-admin-int.inc.php:485
-msgid "From the email address indicated by the custome"
+msgid "From the email address indicated by the customer"
 msgstr ""
 
 #: cp-admin-int.inc.php:488
@@ -1554,7 +1554,7 @@ msgid "Destination emails (comma separated)"
 msgstr "Bestemmings e-mails (gescheiden door komma's)"
 
 #: cp-admin-int.inc.php:519
-msgid "Field that cotains the destination email(s)"
+msgid "Field that contains the destination email(s)"
 msgstr "Veld dat de bestemmings-e-mail (s) bevat"
 
 #: cp-admin-int.inc.php:528
@@ -1828,7 +1828,7 @@ msgid "Using Elementor?"
 msgstr "Gebruik je Elementor?"
 
 #: cp-publish-wizzard.inc.php:117
-msgid "Using New WordPress Editor (Gutemberg)?"
+msgid "Using New WordPress Editor (Gutenberg)?"
 msgstr "Gebruik je de nieuwe WordPress editor (Gutenberg)?"
 
 #: cp-publish-wizzard.inc.php:122
@@ -1868,10 +1868,10 @@ msgstr "Notitie"
 #: cp-publish-wizzard.inc.php:208
 msgid ""
 "which has been added to your Upload/Insert Menu, just below the title of your "
-"Post/Page or under the \"+\" icon if using the Gutemberg editor."
+"Post/Page or under the \"+\" icon if using the Gutenberg editor."
 msgstr ""
 "die is toegevoegd aan je menu Uploaden/Invoegen, net onder de titel van je "
-"bericht/pagina of onder het pictogram \"+\" als je de Gutemberg editor gebruikt."
+"bericht/pagina of onder het pictogram \"+\" als je de Gutenberg editor gebruikt."
 
 #: cp-settings.inc.php:112
 msgid "Appointment Hour Booking - General Settings"
@@ -2018,8 +2018,8 @@ msgstr ""
 
 #: cp-settings.inc.php:318
 msgid ""
-"Use this area to add custom custom scripts. These scripts will be keep safe "
-"even after updating the plugin."
+"Use this area to add custom scripts. These scripts will be keep safe even after "
+"updating the plugin."
 msgstr ""
 
 #: cp_admin_int_edition.inc.php:24
@@ -2479,3 +2479,9 @@ msgstr "Eindtijd afspraak in de bevestigingsmail opnemen?"
 
 msgid "Allow selected users access also to the calendar settings?"
 msgstr "Geselecteerde gebruikers ook toegang geven tot de kalenderinstellingen?"
+
+msgid "Are you sure you want to cancel this booking?"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""

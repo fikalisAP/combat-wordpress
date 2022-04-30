@@ -575,10 +575,13 @@ class CP_AppBookingPlugin extends CP_APPBOOK_BaseClass {
             $dexQuery = jQuery.noConflict();
             try { document.<?php echo $this->prefix; ?>_pform<?php echo '_'.$this->print_counter; ?>.cp_ref_page.value = document.location; } catch (e) {}
             $dexQuery = jQuery.noConflict();<?php if (!is_admin() && $this->get_option('cv_enable_captcha', CP_APPBOOK_DEFAULT_cv_enable_captcha) != 'false') { ?>
+            var result = '';
+            try {
             if (!apphboverbooking_handler<?php echo $this->print_counter-1; ?>) {
             if (document.<?php echo $this->prefix; ?>_pform<?php echo '_'.$this->print_counter; ?>.hdcaptcha_<?php echo $this->prefix; ?>_post.value == '') { setTimeout( "<?php echo $this->prefix; ?>_cerror<?php echo '_'.$this->print_counter; ?>()", 100); return false; }
-            var result = $dexQuery.ajax({ type: "GET", url: "<?php echo $this->get_site_url(); ?>?ps=<?php echo '_'.$this->print_counter; ?>&<?php echo $this->prefix; ?>_pform_process=2&<?php echo $this->prefix; ?>_id=<?php echo intval($this->item); ?>&inAdmin=1&ps=<?php echo '_'.$this->print_counter; ?>&hdcaptcha_<?php echo $this->prefix; ?>_post="+document.<?php echo $this->prefix; ?>_pform<?php echo '_'.$this->print_counter; ?>.hdcaptcha_<?php echo $this->prefix; ?>_post.value, async: false }).responseText;
+            var result = $dexQuery.ajax({ type: "GET", url: "<?php echo $this->get_site_url(); ?>?ps=<?php echo '_'.$this->print_counter; ?>&<?php echo $this->prefix; ?>_pform_process=2&<?php echo $this->prefix; ?>_id=<?php echo intval($this->item); ?>&inAdmin=1&ps=<?php echo '_'.$this->print_counter; ?>&hdcaptcha_<?php echo $this->prefix; ?>_post="+document.<?php echo $this->prefix; ?>_pform<?php echo '_'.$this->print_counter; ?>.hdcaptcha_<?php echo $this->prefix; ?>_post.value, async: false }).responseText;            
             }
+            } catch (e) {result='';console.log('AHB: Captcha not detected.');}
             if (!apphboverbooking_handler<?php echo $this->print_counter-1; ?> && result.indexOf("captchafailed") != -1) {
                 $dexQuery("#captchaimg<?php echo '_'.$this->print_counter; ?>").attr('src', $dexQuery("#captchaimg<?php echo '_'.$this->print_counter; ?>").attr('src')+'&'+Math.floor((Math.random() * 99999) + 1));
                 setTimeout( "<?php echo $this->prefix; ?>_cerror<?php echo '_'.$this->print_counter; ?>()", 100);
@@ -920,8 +923,8 @@ class CP_AppBookingPlugin extends CP_APPBOOK_BaseClass {
 
 
     public function render_form_admin ($atts) {
-        $is_gutemberg_editor = defined( 'REST_REQUEST' ) && REST_REQUEST && ! empty( $_REQUEST['context'] ) && 'edit' === $_REQUEST['context'];
-        if (!$is_gutemberg_editor)
+        $is_gutenberg_editor = defined( 'REST_REQUEST' ) && REST_REQUEST && ! empty( $_REQUEST['context'] ) && 'edit' === $_REQUEST['context'];
+        if (!$is_gutenberg_editor)
             return $this->filter_content (array('id' => $atts["formId"]));
         else if ($atts["formId"])
         {
@@ -1715,7 +1718,7 @@ class CP_AppBookingPlugin extends CP_APPBOOK_BaseClass {
                   ."*********************************\n";
 
             $basic_data = "IP: ".$myrows[0]->ipaddr."\n"
-              ."Server Time:  ".date("Y-m-d H:i:s")."\n";
+              ."Server Time:  ".date("Y-m-d H:i:s", current_time('timestamp'))."\n";
 
 		    /**
 		     *	Includes additional information to the email's message,
@@ -1723,6 +1726,7 @@ class CP_AppBookingPlugin extends CP_APPBOOK_BaseClass {
 		     */
 		    $basic_data = apply_filters( 'cpappb_additional_information',  $basic_data, $myrows[0]->ipaddr );
 		    $params["additional"] = $basic_data;
+            $params["server_time"] = date("Y-m-d H:i:s", current_time('timestamp'));
 		    $buffer .= $basic_data;
         }
 

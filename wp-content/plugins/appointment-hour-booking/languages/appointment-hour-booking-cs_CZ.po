@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Appointment Hour Booking\n"
 "POT-Creation-Date: 2019-01-18 14:41+0100\n"
-"PO-Revision-Date: 2021-08-03 13:18+0200\n"
+"PO-Revision-Date: 2022-04-18 20:14+0200\n"
 "Last-Translator: admin <jakub.ka@seznam.cz>\n"
 "Language-Team: Čeština\n"
 "Language: cs_CZ\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -52,7 +52,7 @@ msgid "Mode:"
 msgstr ""
 
 #: addons/authnet.addon.php:122
-msgid "Prodution"
+msgid "Production"
 msgstr ""
 
 #: addons/authnet.addon.php:123
@@ -412,7 +412,7 @@ msgstr ""
 
 #: addons/paypalpro.addon.php:398
 msgid ""
-"The add-on adds support for PayPal Payment Pro payments to accept credit cars directly into the "
+"The add-on adds support for PayPal Payment Pro payments to accept credit cards directly into the "
 "website"
 msgstr ""
 
@@ -631,7 +631,7 @@ msgid "Field name"
 msgstr ""
 
 #: addons/signature.addon.php:143 addons/signature.addon.php:226
-msgid "Enter the field name to be reaplaced by the signature"
+msgid "Enter the field name to be replaced by the signature"
 msgstr ""
 
 #: addons/signature.addon.php:173
@@ -1174,8 +1174,8 @@ msgid "Using Elementor?"
 msgstr "Používáte Elementor?"
 
 #: cp-publish-wizzard.inc.php:125
-msgid "Using New WordPress Editor (Gutemberg)?"
-msgstr "Používáte nový editor WordPress (Gutemberg)?"
+msgid "Using New WordPress Editor (Gutenberg)?"
+msgstr "Používáte nový editor WordPress (Gutenberg)?"
 
 #: cp-publish-wizzard.inc.php:130
 msgid "Using classic WordPress editor or other editors?"
@@ -1204,10 +1204,10 @@ msgstr "Poznámka"
 #: cp-publish-wizzard.inc.php:217
 msgid ""
 "which has been added to your Upload/Insert Menu, just below the title of your Post/Page or under "
-"the \"+\" icon if using the Gutemberg editor."
+"the \"+\" icon if using the Gutenberg editor."
 msgstr ""
 "který byl přidán do vaší nabídky Upload/Insert Menu, těsně pod názvem vašeho příspěvku/stránky "
-"nebo pod ikonou „+“, pokud používáte editor Gutemberg."
+"nebo pod ikonou „+“, pokud používáte editor Gutenberg."
 
 #: cp-settings.inc.php:117
 msgid "Appointment Hour Booking - General Settings"
@@ -1417,8 +1417,8 @@ msgstr "Další styly najdete v sekci design v FAQ:"
 
 #: cp-settings.inc.php:362
 msgid ""
-"Use this area to add custom custom scripts. These scripts will be keep safe even after updating "
-"the plugin."
+"Use this area to add custom scripts. These scripts will be keep safe even after updating the "
+"plugin."
 msgstr ""
 "V této oblasti můžete přidat vlastní vlastní skripty. Tyto skripty zůstanou v bezpečí i po "
 "aktualizaci pluginu."
@@ -1723,7 +1723,7 @@ msgid "From fixed email address indicated below - Recommended option"
 msgstr "Z pevné e-mailové adresy uvedené níže - doporučená možnost"
 
 #: cp-admin-int.inc.php:518
-msgid "From the email address indicated by the custome"
+msgid "From the email address indicated by the customer"
 msgstr "Z e-mailové adresy uvedené zákazníkem"
 
 #: cp-admin-int.inc.php:521
@@ -1784,7 +1784,7 @@ msgid "Destination emails (comma separated)"
 msgstr "Cílové e-maily (oddělené čárkou)"
 
 #: cp-admin-int.inc.php:552
-msgid "Field that cotains the destination email(s)"
+msgid "Field that contains the destination email(s)"
 msgstr "Pole obsahující cílové e-maily"
 
 #: cp-admin-int.inc.php:560
@@ -2263,4 +2263,10 @@ msgid "Update Report Settings"
 msgstr ""
 
 msgid "BLOCKED BY ADMIN"
+msgstr ""
+
+msgid "Are you sure you want to cancel this booking?"
+msgstr ""
+
+msgid "Confirm"
 msgstr ""

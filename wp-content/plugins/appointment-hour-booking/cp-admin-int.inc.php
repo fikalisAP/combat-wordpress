@@ -549,7 +549,7 @@ $nonce = wp_create_nonce( 'cpappb_actions_admin' );
               <?php $option = $this->get_option('fp_emailfrommethod', "fixed"); ?>
                <select name="fp_emailfrommethod">
                  <option value="fixed"<?php if ($option == 'fixed') echo ' selected'; ?>><?php _e('From fixed email address indicated below - Recommended option','appointment-hour-booking'); ?></option>
-                 <option value="customer"<?php if ($option == 'customer') echo ' selected'; ?>><?php _e('From the email address indicated by the custome','appointment-hour-booking'); ?>r</option>
+                 <option value="customer"<?php if ($option == 'customer') echo ' selected'; ?>><?php _e('From the email address indicated by the customer','appointment-hour-booking'); ?></option>
                 </select><br />
                 <span style="font-size:10px;color:#666666">
                 * <?php _e('If you select "from fixed..." the customer email address will appear in the "to" address when you hit "reply", this is the recommended setting to avoid mail server restrictions.','appointment-hour-booking'); ?>
@@ -583,7 +583,7 @@ $nonce = wp_create_nonce( 'cpappb_actions_admin' );
             <td><input type="text" name="fp_destination_emails" size="40" value="<?php echo esc_attr($this->get_option('fp_destination_emails', CP_APPBOOK_DEFAULT_fp_destination_emails)); ?>" /></td>
             </tr>
             <tr valign="top" id="cpappb_dropemails" <?php if ($option != 'customer') echo ' style="display:none;"'; ?>>
-            <th scope="row"><?php _e('Field that cotains the destination email(s)','appointment-hour-booking'); ?></th>
+            <th scope="row"><?php _e('Field that contains the destination email(s)','appointment-hour-booking'); ?></th>
             <td>
                 <select id="fp_destination_emails_field" name="fp_destination_emails_field" def="<?php echo esc_attr($this->get_option('fp_destination_emails_field', '')); ?>"></select>
             </td>

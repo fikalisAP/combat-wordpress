@@ -35,7 +35,7 @@ Main Features:
 * iCal addon with iCal export link and iCal file attached into emails
 * Calendar available in 53+ languages
 * Multiple date formats supported
-* Blocks for Elementor and Gutemberg
+* Blocks for Elementor and Gutenberg
 * Multi-page calendars
 * Printable **appointments list**
 
@@ -228,7 +228,7 @@ Please note that the pro features aren't advised as part of the free plugin in t
 2. Inserting an appointment hour booking calendar into a page.
 3. Managing the appointment hour booking  calendar.
 4. Appointment Hour Booking calendar settings.
-5. Integration with the new Gutemberg Editor
+5. Integration with the new Gutenberg Editor
 
 == Changelog ==
 
@@ -436,7 +436,7 @@ Please note that the pro features aren't advised as part of the free plugin in t
 * Fixed bug in time calculation
 
 = 1.0.68 =
-* New Gutemberg Block
+* New Gutenberg Block
 
 = 1.0.69 =
 * Redirect / confirmation page supports now boking parameters
@@ -587,7 +587,7 @@ Please note that the pro features aren't advised as part of the free plugin in t
 * Fixed bug in available dates
 
 = 1.1.23 =
-* Fixed Gutemberg editor error
+* Fixed Gutenberg editor error
 
 = 1.1.24 =
 * Fixed captcha bug
@@ -1222,7 +1222,31 @@ Please note that the pro features aren't advised as part of the free plugin in t
 = 1.3.44 =
 * Better calendar speed
 
+= 1.3.45 =
+* Mobile visualization improved
+
+= 1.3.46 =
+* Captcha code fix
+
+= 1.3.47 =
+* Reported time adjustments
+
+= 1.3.48 =
+* Availability verification improved
+
+= 1.3.49 =
+* Translations update
+
+= 1.3.50 =
+* CSS updates for overlapped time-slots
+
+= 1.3.51 =
+* Translations updates and minor fixes
+
+= 1.3.52 =
+* Interface update
+
 == Upgrade Notice ==
 
-= 1.3.44 =
-* Better calendar speed
+= 1.3.52 =
+* Interface update

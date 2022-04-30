@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Appointment Hour Booking\n"
 "POT-Creation-Date: 2019-01-18 14:42+0100\n"
-"PO-Revision-Date: 2021-08-03 13:18+0200\n"
+"PO-Revision-Date: 2022-04-18 20:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -78,7 +78,7 @@ msgid "Mode:"
 msgstr ""
 
 #: addons/authnet.addon.php:122
-msgid "Prodution"
+msgid "Production"
 msgstr ""
 
 #: addons/authnet.addon.php:123
@@ -500,7 +500,7 @@ msgid "Default Country"
 msgstr ""
 
 #: addons/paypalpro.addon.php:398
-msgid "The add-on adds support for PayPal Payment Pro payments to accept credit cars directly into the website"
+msgid "The add-on adds support for PayPal Payment Pro payments to accept credit cards directly into the website"
 msgstr ""
 
 #: addons/paypalpro.addon.php:564
@@ -733,7 +733,7 @@ msgid "Field name"
 msgstr "Feldname"
 
 #: addons/signature.addon.php:143 addons/signature.addon.php:226
-msgid "Enter the field name to be reaplaced by the signature"
+msgid "Enter the field name to be replaced by the signature"
 msgstr ""
 
 #: addons/signature.addon.php:173
@@ -1451,7 +1451,7 @@ msgid "From fixed email address indicated below - Recommended option"
 msgstr "Von der unten angegebenen festen E-Mail-Adresse - Empfohlene Option"
 
 #: cp-admin-int.inc.php:485
-msgid "From the email address indicated by the custome"
+msgid "From the email address indicated by the customer"
 msgstr "Von der vom Sachwalter angegebenen E-Mail-Adresse"
 
 #: cp-admin-int.inc.php:488
@@ -1495,7 +1495,7 @@ msgid "Destination emails (comma separated)"
 msgstr "Ziel-E-Mails (Komma getrennt)"
 
 #: cp-admin-int.inc.php:519
-msgid "Field that cotains the destination email(s)"
+msgid "Field that contains the destination email(s)"
 msgstr "Feld, das die Ziel-E-Mail(s) enthält"
 
 #: cp-admin-int.inc.php:528
@@ -1763,8 +1763,8 @@ msgid "Using Elementor?"
 msgstr "Elementor verwenden?"
 
 #: cp-publish-wizzard.inc.php:117
-msgid "Using New WordPress Editor (Gutemberg)?"
-msgstr "Verwendung des neuen WordPress-Editors (Gutemberg)?"
+msgid "Using New WordPress Editor (Gutenberg)?"
+msgstr "Verwendung des neuen WordPress-Editors (Gutenberg)?"
 
 #: cp-publish-wizzard.inc.php:122
 msgid "Using classic WordPress editor or other editors?"
@@ -1795,8 +1795,8 @@ msgid "Note"
 msgstr "Hinweis"
 
 #: cp-publish-wizzard.inc.php:208
-msgid "which has been added to your Upload/Insert Menu, just below the title of your Post/Page or under the \"+\" icon if using the Gutemberg editor."
-msgstr "das Ihrem Upload-Insert-Menü hinzugefügt wurde, direkt unter dem Titel Ihrer PostPage oder unter dem \"+\"-Symbol, wenn Sie den Gutemberg-Editor verwenden."
+msgid "which has been added to your Upload/Insert Menu, just below the title of your Post/Page or under the \"+\" icon if using the Gutenberg editor."
+msgstr "das Ihrem Upload-Insert-Menü hinzugefügt wurde, direkt unter dem Titel Ihrer PostPage oder unter dem \"+\"-Symbol, wenn Sie den Gutenberg-Editor verwenden."
 
 #: cp-settings.inc.php:112
 msgid "Appointment Hour Booking - General Settings"
@@ -1935,7 +1935,7 @@ msgid "For other styles check the design section in the FAQ:"
 msgstr "Weitere Stile finden Sie im Abschnitt Design in den FAQ:"
 
 #: cp-settings.inc.php:318
-msgid "Use this area to add custom custom scripts. These scripts will be keep safe even after updating the plugin."
+msgid "Use this area to add custom scripts. These scripts will be keep safe even after updating the plugin."
 msgstr "In diesem Bereich können Sie benutzerdefinierte Skripte hinzufügen. Diese Skripte werden auch nach der Aktualisierung des Plugins sicher aufbewahrt."
 
 #: cp_admin_int_edition.inc.php:24
@@ -2341,4 +2341,10 @@ msgid "Update Report Settings"
 msgstr ""
 
 msgid "BLOCKED BY ADMIN"
+msgstr ""
+
+msgid "Are you sure you want to cancel this booking?"
+msgstr ""
+
+msgid "Confirm"
 msgstr ""

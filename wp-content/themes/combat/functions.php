@@ -82,6 +82,50 @@ function add_additional_class_on_a($classes, $item, $args)
 
 add_filter('nav_menu_link_attributes', 'add_additional_class_on_a', 1, 3);
 
+
+function benefits_posttype()
+{
+    register_post_type( 'benefits', [
+		'label'  => null,
+		'labels' => [
+			'name'               => 'Преимущества', // основное название для типа записи
+			'singular_name'      => 'Преимущества', // название для одной записи этого типа
+			'add_new'            => 'Добавить', // для добавления новой записи
+			'add_new_item'       => 'Добавление', // заголовка у вновь создаваемой записи в админ-панели.
+			'edit_item'          => 'Редактирование', // для редактирования типа записи
+			'new_item'           => 'Новое', // текст новой записи
+			'view_item'          => 'Смотреть', // для просмотра записи этого типа.
+			'search_items'       => 'Искать', // для поиска по этим типам записи
+			'not_found'          => 'Не найдено', // если в результате поиска ничего не было найдено
+			'not_found_in_trash' => 'Не найдено в корзине', // если не было найдено в корзине
+			'parent_item_colon'  => '', // для родителей (у древовидных типов)
+			'menu_name'          => 'Преимущества', // название меню
+		],
+		'description'         => '',
+		'public'              => true,
+		// 'publicly_queryable'  => null, // зависит от public
+		// 'exclude_from_search' => null, // зависит от public
+		// 'show_ui'             => null, // зависит от public
+		// 'show_in_nav_menus'   => null, // зависит от public
+		'show_in_menu'        => null, // показывать ли в меню адмнки
+		// 'show_in_admin_bar'   => null, // зависит от show_in_menu
+		'show_in_rest'        => null, // добавить в REST API. C WP 4.7
+		'rest_base'           => null, // $post_type. C WP 4.7
+		'menu_position'       => 4,
+		'menu_icon'           => null,
+		//'capability_type'   => 'post',
+		//'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
+		//'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
+		'hierarchical'        => false,
+		'supports'            => [ 'title', 'editor' , 'thumbnail' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+		'taxonomies'          => [],
+		'has_archive'         => false,
+		'rewrite'             => true,
+		'query_var'           => true,
+	] );
+}
+add_action('init', 'benefits_posttype', 0);
+
 function services_posttype()
 {
     register_post_type( 'services', [
@@ -110,7 +154,7 @@ function services_posttype()
 		// 'show_in_admin_bar'   => null, // зависит от show_in_menu
 		'show_in_rest'        => null, // добавить в REST API. C WP 4.7
 		'rest_base'           => null, // $post_type. C WP 4.7
-		'menu_position'       => null,
+		'menu_position'       => 5,
 		'menu_icon'           => null,
 		//'capability_type'   => 'post',
 		//'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
@@ -125,10 +169,11 @@ function services_posttype()
 }
 add_action('init', 'services_posttype', 0);
 
+
 function services_query($query)
 {
     if (is_home() && $query->is_main_query())
-        $query->set('post_type', array('post', 'services'));
+        $query->set('post_type', array('post', 'services', 'benefits'));
     return $query; 
 }
 add_action('pre_get_posts', 'services_query');

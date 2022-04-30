@@ -122,9 +122,9 @@ if ($this->get_param('cp_apphourbooking_do_action_loaded') == 'wizard') {
                        <?php } ?>                       
                        
                        <br />                       
-                       <h3 style="background:#cccccc; padding:5px;"><?php _e('Using New WordPress Editor (Gutemberg)?','appointment-hour-booking'); ?> </h3>
+                       <h3 style="background:#cccccc; padding:5px;"><?php _e('Using New WordPress Editor (Gutenberg)?','appointment-hour-booking'); ?> </h3>
                        
-                       <img src="<?php echo plugins_url('/controllers/help/gutemberg.png', __FILE__) ?>">                      
+                       <img src="<?php echo plugins_url('/controllers/help/gutenberg.png', __FILE__) ?>">                      
                        
                        <br /> 
                        <h3 style="background:#cccccc; padding:5px;"><?php _e('Using classic WordPress editor or other editors?','appointment-hour-booking'); ?></h3>
@@ -214,7 +214,7 @@ function mvpublish_displayoption(sel) {
   <h3 class='hndle' style="padding:5px;"><span><?php _e('Note','appointment-hour-booking'); ?></span></h3>
   <div class="inside">
    <?php _e('You can also publish the form in a post/page, use the dedicated icon','appointment-hour-booking'); ?> <?php echo '<img hspace="5" src="'.plugins_url('/images/cp_form.gif', __FILE__).'" alt="'.__('Insert '.$this->plugin_name).'" /></a>';     ?>
-   <?php _e('which has been added to your Upload/Insert Menu, just below the title of your Post/Page or under the "+" icon if using the Gutemberg editor.','appointment-hour-booking'); ?>
+   <?php _e('which has been added to your Upload/Insert Menu, just below the title of your Post/Page or under the "+" icon if using the Gutenberg editor.','appointment-hour-booking'); ?>
    <br /><br />
   </div>
 </div>

@@ -19,15 +19,11 @@ get_header();
     <div class="container">
         <div class="benefits__inner">
             <?php
-            global $post;
-            $query = new WP_Query([
-                'posts_per_page' => 5,
-                'category_name' => 'benefits',
-            ]);
-            if ($query->have_posts()) {
-                while ($query->have_posts()) {
-                    $query->the_post();
+            $args = array('post_type' => 'benefits', 'posts_per_page' => 4);
+            $the_query = new WP_Query($args)
             ?>
+            <?php if ($the_query->have_posts()) : ?>
+                <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
                     <div class="benefits__item">
                         <?php the_post_thumbnail(
                             array(40, 40),
@@ -38,11 +34,11 @@ get_header();
                         <h3 class="benefits__item-title"><?php the_title(); ?></h3>
                         <p class="benefits__item-text"><?php the_content(); ?></p>
                     </div>
-            <?php
-                }
-            }
-            wp_reset_postdata();
-            ?>
+                    <?php wp_reset_postdata(); ?>
+                <?php endwhile;
+            else : ?>
+                <p><?php _e('Услуги не найдены'); ?></p>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -57,9 +53,7 @@ get_header();
             ?>
             <?php if ($the_query->have_posts()) : ?>
                 <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-                    <div class="services__item" style="background-image: url(<?
-                                                                                $thumbnail_attributes = wp_get_attachment_image_src(get_post_thumbnail_id());
-                                                                                echo $thumbnail_attributes[0]; ?>">
+                    <div class="services__item" style="background-image: url(<? echo get_the_post_thumbnail_url( '' ,'thumbnail' ); ?>)">
                         <h4 class="services__item-title"><?php the_title(); ?></h4>
                         <p class="services__item-description"><?php the_content(); ?></p>
                     </div>

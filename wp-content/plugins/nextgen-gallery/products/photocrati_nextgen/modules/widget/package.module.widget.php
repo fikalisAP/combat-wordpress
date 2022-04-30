@@ -73,6 +73,10 @@ class C_Widget_Gallery extends WP_Widget
         // and cache the resulting displayed gallery for later rendering to avoid the ID changing due to misc attributes
         // in $args being different now and at render time ($args is sidebar information that is not relevant)
         add_action('wp_enqueue_scripts', function () {
+            // Prevent enqueueing resources if the widget is not in use
+            if (!is_active_widget(FALSE, FALSE, 'ngg-images', true)) {
+                return;
+            }
             global $wp_registered_sidebars;
             $sidebars = wp_get_sidebars_widgets();
             $options = $this->get_settings();
@@ -317,6 +321,10 @@ class C_Widget_Slideshow extends WP_Widget
         // and cache the resulting displayed gallery for later rendering to avoid the ID changing due to misc attributes
         // in $args being different now and at render time ($args is sidebar information that is not relevant)
         add_action('wp_enqueue_scripts', function () {
+            // Prevent enqueueing resources if the widget is not in use
+            if (!is_active_widget(FALSE, FALSE, 'slideshow', true)) {
+                return;
+            }
             global $wp_registered_sidebars;
             $sidebars = wp_get_sidebars_widgets();
             $options = $this->get_settings();

@@ -129,7 +129,7 @@ class C_NextGen_Settings_Installer
 			'irRotatetime' => 5,
 
             // Misc
-            'dynamic_image_filename_separator_use_dash' => !$existing_options['gallerypath'],
+            'dynamic_image_filename_separator_use_dash' => !isset($existing_options['gallerypath']) ? TRUE : FALSE,
 
             // It is known that WPEngine disables 'order by rand()' by default, but exposes it as an option to users
             'use_alternate_random_method' => (function_exists('is_wpe') && is_wpe()) ? TRUE : FALSE,

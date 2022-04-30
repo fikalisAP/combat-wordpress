@@ -14,7 +14,7 @@ if( !class_exists( 'CPAPPB_Deposits' ) )
 		protected $name = "Deposit Payments";
 		protected $description;
         public $category = 'Improvements';
-        public $help = 'https://apphourbooking.dwbooster.com/contact-us';
+        public $help = 'https://apphourbooking.dwbooster.com/customdownloads/deposits-payments.png';
         
 
         /************************ CONSTRUCT *****************************/

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Appointment Hour Booking\n"
 "POT-Creation-Date: 2019-01-18 14:42+0100\n"
-"PO-Revision-Date: 2021-08-03 13:17+0200\n"
+"PO-Revision-Date: 2022-04-18 20:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -58,7 +58,7 @@ msgid "Mode:"
 msgstr ""
 
 #: addons/authnet.addon.php:122
-msgid "Prodution"
+msgid "Production"
 msgstr ""
 
 #: addons/authnet.addon.php:123
@@ -455,7 +455,7 @@ msgid "Default Country"
 msgstr ""
 
 #: addons/paypalpro.addon.php:398
-msgid "The add-on adds support for PayPal Payment Pro payments to accept credit cars directly into the website"
+msgid "The add-on adds support for PayPal Payment Pro payments to accept credit cards directly into the website"
 msgstr ""
 
 #: addons/paypalpro.addon.php:564
@@ -676,7 +676,7 @@ msgid "Field name"
 msgstr ""
 
 #: addons/signature.addon.php:143 addons/signature.addon.php:226
-msgid "Enter the field name to be reaplaced by the signature"
+msgid "Enter the field name to be replaced by the signature"
 msgstr ""
 
 #: addons/signature.addon.php:173
@@ -1345,7 +1345,7 @@ msgid "From fixed email address indicated below - Recommended option"
 msgstr ""
 
 #: cp-admin-int.inc.php:485
-msgid "From the email address indicated by the custome"
+msgid "From the email address indicated by the customer"
 msgstr ""
 
 #: cp-admin-int.inc.php:488
@@ -1389,7 +1389,7 @@ msgid "Destination emails (comma separated)"
 msgstr ""
 
 #: cp-admin-int.inc.php:519
-msgid "Field that cotains the destination email(s)"
+msgid "Field that contains the destination email(s)"
 msgstr ""
 
 #: cp-admin-int.inc.php:528
@@ -1647,7 +1647,7 @@ msgid "Using Elementor?"
 msgstr ""
 
 #: cp-publish-wizzard.inc.php:117
-msgid "Using New WordPress Editor (Gutemberg)?"
+msgid "Using New WordPress Editor (Gutenberg)?"
 msgstr ""
 
 #: cp-publish-wizzard.inc.php:122
@@ -1679,7 +1679,7 @@ msgid "Note"
 msgstr ""
 
 #: cp-publish-wizzard.inc.php:208
-msgid "which has been added to your Upload/Insert Menu, just below the title of your Post/Page or under the \"+\" icon if using the Gutemberg editor."
+msgid "which has been added to your Upload/Insert Menu, just below the title of your Post/Page or under the \"+\" icon if using the Gutenberg editor."
 msgstr ""
 
 #: cp-settings.inc.php:112
@@ -1815,7 +1815,7 @@ msgid "For other styles check the design section in the FAQ:"
 msgstr ""
 
 #: cp-settings.inc.php:318
-msgid "Use this area to add custom custom scripts. These scripts will be keep safe even after updating the plugin."
+msgid "Use this area to add custom scripts. These scripts will be keep safe even after updating the plugin."
 msgstr ""
 
 #: cp_admin_int_edition.inc.php:24
@@ -1965,4 +1965,10 @@ msgid "Update Report Settings"
 msgstr ""
 
 msgid "BLOCKED BY ADMIN"
+msgstr ""
+
+msgid "Are you sure you want to cancel this booking?"
+msgstr ""
+
+msgid "Confirm"
 msgstr ""

@@ -2,7 +2,7 @@
 Contributors: photocrati, imagely
 Tags: wordpress gallery plugin, gallery, nextgen, nextgen gallery, photo gallery, image gallery, photography, slideshow, images, photo, photo album, watermark
 Requires at least: 5.5.4
-Stable tag: 3.23
+Stable tag: 3.26
 Tested up to: 5.9
 License: GPLv3
 Requires PHP: 5.6
@@ -178,6 +178,17 @@ For more information, feel free to visit the official website for the NextGEN Ga
 
 
 == Changelog ==
+
+= V3.25  - 04.27.2022 =
+* Fixed:   A change in NextGEN 3.23 broke albums pagination.
+* Fixed:   Compatibility with TinyMCE editor used by Advanced Custom Fields.
+* Fixed:   Insert Gallery Window popup failed to load when Elementor is active.
+
+= V3.24  - 03.23.2022 =
+* Fixed:   A possible PHP warning could be generated if the global $post->content is an integer or boolean.
+* Fixed:   Activating NextGEN for the first time generated a PHP warning when registering default settings.
+* Fixed:   NextGEN widgets JS/CSS was enqueued on all frontend pages.
+* Fixed:   Some errors generated while image uploading were not being displayed to the user.
 
 = V3.23  - 02.09.2022 =
 * Fixed:   A potential PHP fatal error in C_Photocrati_Transient_Manager when using external object caching.

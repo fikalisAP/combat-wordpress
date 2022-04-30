@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Appointment Hour Booking\n"
 "POT-Creation-Date: 2019-01-18 14:37+0100\n"
-"PO-Revision-Date: 2021-08-03 13:20+0200\n"
+"PO-Revision-Date: 2022-04-18 20:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -65,8 +65,8 @@ msgstr "Modus:"
 
 #: addons/authnet.addon.php:122
 #, fuzzy
-msgid "Prodution"
-msgstr "Prodution"
+msgid "Production"
+msgstr "Production"
 
 #: addons/authnet.addon.php:123
 msgid "Test"
@@ -513,7 +513,7 @@ msgstr "Standardland"
 
 #: addons/paypalpro.addon.php:398
 #, fuzzy
-msgid "The add-on adds support for PayPal Payment Pro payments to accept credit cars directly into the website"
+msgid "The add-on adds support for PayPal Payment Pro payments to accept credit cards directly into the website"
 msgstr "Tillegget legger til støtte for PayPal Payment Pro-betalinger for å godta kredittbiler direkte på nettstedet"
 
 #: addons/paypalpro.addon.php:564
@@ -764,7 +764,7 @@ msgstr "Feltnavn"
 
 #: addons/signature.addon.php:143 addons/signature.addon.php:226
 #, fuzzy
-msgid "Enter the field name to be reaplaced by the signature"
+msgid "Enter the field name to be replaced by the signature"
 msgstr "Skriv inn feltnavnet som skal gjeninnses av signaturen"
 
 #: addons/signature.addon.php:173
@@ -1548,7 +1548,7 @@ msgstr "Fra fast e-postadresse angitt nedenfor - Anbefalt alternativ"
 
 #: cp-admin-int.inc.php:485
 #, fuzzy
-msgid "From the email address indicated by the custome"
+msgid "From the email address indicated by the customer"
 msgstr "Fra e-postadressen som er angitt av den tilpassede"
 
 #: cp-admin-int.inc.php:488
@@ -1606,7 +1606,7 @@ msgstr "Destinasjons-e-post (kommaseparert)"
 
 #: cp-admin-int.inc.php:519
 #, fuzzy
-msgid "Field that cotains the destination email(s)"
+msgid "Field that contains the destination email(s)"
 msgstr "Felt som inneholder mål-e-postadressen(e)"
 
 #: cp-admin-int.inc.php:528
@@ -1908,8 +1908,8 @@ msgstr "Bruker du Elementor?"
 
 #: cp-publish-wizzard.inc.php:117
 #, fuzzy
-msgid "Using New WordPress Editor (Gutemberg)?"
-msgstr "Bruker du Ny WordPress Editor (Gutemberg)?"
+msgid "Using New WordPress Editor (Gutenberg)?"
+msgstr "Bruker du Ny WordPress Editor (Gutenberg)?"
 
 #: cp-publish-wizzard.inc.php:122
 #, fuzzy
@@ -1947,8 +1947,8 @@ msgstr "Merknad"
 
 #: cp-publish-wizzard.inc.php:208
 #, fuzzy
-msgid "which has been added to your Upload/Insert Menu, just below the title of your Post/Page or under the \"+\" icon if using the Gutemberg editor."
-msgstr "som er lagt til i opplastings-/sett inn-menyen, like under tittelen på innlegget/siden din eller under «+»-ikonet hvis du bruker Gutemberg-redigeringsprogrammet."
+msgid "which has been added to your Upload/Insert Menu, just below the title of your Post/Page or under the \"+\" icon if using the Gutenberg editor."
+msgstr "som er lagt til i opplastings-/sett inn-menyen, like under tittelen på innlegget/siden din eller under «+»-ikonet hvis du bruker Gutenberg-redigeringsprogrammet."
 
 #: cp-settings.inc.php:112
 #, fuzzy
@@ -2114,7 +2114,7 @@ msgstr "For andre stiler, sjekk utformingsdelen i vanlige spørsmål:"
 
 #: cp-settings.inc.php:318
 #, fuzzy
-msgid "Use this area to add custom custom scripts. These scripts will be keep safe even after updating the plugin."
+msgid "Use this area to add custom scripts. These scripts will be keep safe even after updating the plugin."
 msgstr "Bruk dette området til å legge til egendefinerte egendefinerte skript. Disse skriptene vil være trygge selv etter oppdatering av plugin."
 
 #: cp_admin_int_edition.inc.php:24
@@ -2474,4 +2474,10 @@ msgid "Update Report Settings"
 msgstr "Oppdatere rapportinnstillinger"
 
 msgid "BLOCKED BY ADMIN"
+msgstr ""
+
+msgid "Are you sure you want to cancel this booking?"
+msgstr ""
+
+msgid "Confirm"
 msgstr ""

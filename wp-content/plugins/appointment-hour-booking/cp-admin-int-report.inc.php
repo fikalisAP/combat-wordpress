@@ -153,7 +153,7 @@ else
    ?>
     </select></nobr>
 		<nobr>
-			<input type="submit" name="<?php echo $this->prefix; ?>_csv" value="<?php _e('Export to CSV','appointment-hour-booking'); ?>" class="button" style="float:right;margin-left:10px;">
+			<input type="submit" name="<?php echo $this->prefix; ?>_csv1" value="<?php _e('Export to CSV','appointment-hour-booking'); ?>" class="button" style="float:right;margin-left:10px;">
 			<input type="submit" name="ds" value="<?php _e('Filter','appointment-hour-booking'); ?>" class="button-primary button" style="float:right;">
 		</nobr>
        </form>
@@ -278,9 +278,9 @@ else
 <script type='text/javascript' src='<?php echo plugins_url('js/excanvas.min.js', __FILE__); ?>'></script>
 <script type="text/javascript">
 var $ = jQuery.noConflict();
-$j(document).ready(function(){
+$j(document).ready(function(){  
 		    /////////////////////////canvas//////////////////////////
-		    $(window).on('load',function(){
+		  {               
                 drawGraph($("#cardio1"), $("#cardiocontainer1"));
                 drawGraph($("#cardio2"), $("#cardiocontainer2"));
                 function drawGraph(canvas, canvasContainer)
@@ -353,7 +353,7 @@ $j(document).ready(function(){
 		                });
 		            }
 		        }
-            });
+            }
 
 		    ////////////////////////end canvas///////////////////////
 });

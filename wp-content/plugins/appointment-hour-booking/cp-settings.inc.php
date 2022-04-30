@@ -541,7 +541,7 @@ jQuery(function(){
 <!-- TAB 4 -->
 <div class="ahb-tab<?php if ($gotab == 'js') echo ' tab-active'; ?>" data-tab="4">
 	<h2><?php _e('Edit Scripts','appointment-hour-booking'); ?></h2>
-	<p><?php _e('Use this area to add custom custom scripts. These scripts will be keep safe even after updating the plugin.','appointment-hour-booking'); ?></p>
+	<p><?php _e('Use this area to add custom scripts. These scripts will be keep safe even after updating the plugin.','appointment-hour-booking'); ?></p>
     <form method="post" action="" name="cpformconf4">
          <input name="<?php echo $cpid; ?>_post_edition" type="hidden" value="1" />
          <input name="cfwpp_edit" type="hidden" value="js" />
