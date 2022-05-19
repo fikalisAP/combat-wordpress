@@ -53,7 +53,7 @@ get_header();
             ?>
             <?php if ($the_query->have_posts()) : ?>
                 <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-                    <div class="services__item" style="background-image: url(<? echo get_the_post_thumbnail_url( '' ,'thumbnail' ); ?>)">
+                    <div class="services__item" style="background-image: url(<? echo get_the_post_thumbnail_url('', 'thumbnail'); ?>)">
                         <h4 class="services__item-title"><?php the_title(); ?></h4>
                         <p class="services__item-description"><?php the_content(); ?></p>
                     </div>
@@ -161,12 +161,7 @@ get_header();
                         </div>
                     </div>
                     <div class="news__wrapper-img">
-                        <?php the_post_thumbnail(
-                            array(540, 540),
-                            array(
-                                'class' => "news__images"
-                            )
-                        ); ?>
+                        <img class="news__images" src="<? echo get_the_post_thumbnail_url(null,'full'); ?>" alt="">
                     </div>
                 </a>
         <?php

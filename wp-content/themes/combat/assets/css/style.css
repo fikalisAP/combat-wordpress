@@ -827,36 +827,120 @@ a {
 /* ----------------- / PAGE NEWS1 ------------- */
 
 
+
 /* ----------------- PAGE ARSENAL -------------- */
 
 .arsenal__inner {
     display: block;
 }
-
 .arsenal__block {
     margin-bottom: 100px;
-}
+    display: flex;
+    align-items: center;
+    position: relative;
 
+}
 .arsenal__image {
-    margin: 0 auto;
-    text-align: center;
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    width: 450px;
+    height: 450px;
+    position: relative;
 }
 
-.arsenal__image img {
-    max-width: 550px;
+.arsenal__photo{
+    text-align: center;
+    width: 450px;
+}
+.arsenal__photo img {
+    max-width: 400px;
+    max-height: 400px;
+
 }
 
 .arsenal__text {
-    margin: 0 auto;
-    text-align: center;
-    max-width: 900px;
+    padding-right: 20px;
+    position: relative;
+    background-color: #CDE1FF;
 }
 
-.arsenal-title {
-    text-align: center;
+.arsenal__gun__title h2{
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.arsenal__gun__text {
+    margin-bottom: 50px;
+}
+.circle__arsenal {
+    z-index: -1;
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    border: 110px solid #CDE1FF;
+}
+.rectangle__arsenal::before {
+    left: -100px;
+    position: absolute;
+    z-index: -1;
+    content: "";
+    background-color: #CDE1FF;
+    width: 100%;
+    height: 100%;
+} 
+
+
+@media (max-width: 1260px) {
+    .arsenal__gun__text {
+        font-size: 14px;
+    }
+    .arsenal__gun__title h2 {
+        margin-bottom: 15px;
+    }
+}
+@media (max-width: 1040px) {
+
+    .arsenal__block {
+        display: block;
+    }
+    .arsenal__image {
+        margin: 0 auto;
+    }
+    .circle__arsenal {
+        border: 80px solid #CDE1FF;
+    }
+    .arsenal__photo {
+        max-width: 350px;
+    }
+    .arsenal__photo img {
+        max-width: 300px;
+        max-height: 300px;
+    }
+    .arsenal__image {
+        max-width: 300px;
+        max-height: 300px;
+    }
+    .arsenal__text {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 750px;
+        padding-right: unset;
+    }
+    .rectangle__arsenal::before {
+        display: none;
+    }
+    .arsenal__text {
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 10px;
+    }
 }
 
+@media (max-width: 500px) {
+   
+}
 /* ----------------- /PAGE ARSENAL -------------- */
 
 
