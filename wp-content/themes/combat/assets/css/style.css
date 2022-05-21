@@ -59,7 +59,7 @@ a {
     padding: 10px 0 0 0;
     align-items: center;
     margin-top: 0px;
-    min-height: 75px;
+    min-height: 110px;
 }
 .logo__link{
     z-index: 4;
@@ -156,8 +156,8 @@ a {
 
 .menu__btn {
     display: none;
-    width: 40px;
-    height: 25px;
+    width: 25px;
+    height: 20px;
     position: relative;
     background: transparent;
     padding: 0;
@@ -177,7 +177,7 @@ a {
 .menu__btn span::after,
 .menu__btn span::before {
     content: "";
-    width: 40px;
+    width: 25px;
     height: 2px;
     background-color: #303030;
     position: absolute;
@@ -1218,10 +1218,6 @@ a {
 }
 
 @media (max-width: 600px) {
-    .arsenal__image img {
-        width: 100%;
-    }
-
     .arsenal__text {
         font-size: 14px;
     }
